@@ -1,4 +1,4 @@
-# Multi-stage Dockerfile for SafePsy Landing Page
+# Multi-stage Dockerfile for SPGlobalv1.0.2 Landing Page
 FROM node:18-alpine AS base
 
 # Install dependencies only when needed
@@ -49,11 +49,11 @@ RUN chown -R nextjs:nodejs /app
 USER nextjs
 
 # Expose port
-EXPOSE 3001
+EXPOSE 3000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3001/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
+  CMD node -e "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
 
 # Start the application
 WORKDIR /app/backend
