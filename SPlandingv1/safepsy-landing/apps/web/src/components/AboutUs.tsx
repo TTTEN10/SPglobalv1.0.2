@@ -165,7 +165,7 @@ const AboutUs: React.FC = () => {
                     Work Psychologist & Ergonomist
                   </p>
                   <p className="text-body italic">
-                    Specialized in psychometric assessments & counsil.
+                    Specialized in psychometric assessments & counsel.
                   </p>
                 </div>
               </div>
