@@ -37,9 +37,12 @@ RUN adduser --system --uid 1001 nextjs
 # Copy built applications
 COPY --from=builder /app/apps/web/dist ./frontend/dist
 COPY --from=builder /app/apps/api/dist ./backend/dist
-COPY --from=builder /app/apps/api/node_modules ./backend/node_modules
 COPY --from=builder /app/prisma ./backend/prisma
 COPY --from=builder /app/apps/api/package.json ./backend/package.json
+
+# Install production dependencies
+WORKDIR /app/backend
+RUN npm ci --only=production
 
 # Copy environment files
 COPY --from=builder /app/env.example ./backend/.env
