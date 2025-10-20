@@ -31,7 +31,7 @@ FROM base AS runner
 WORKDIR /app
 
 # Install OpenSSL for Prisma
-RUN apk add --no-cache openssl1.1-compat
+RUN apk add --no-cache openssl openssl-dev
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs
