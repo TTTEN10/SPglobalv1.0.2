@@ -42,7 +42,7 @@ COPY --from=builder /app/prisma ./backend/prisma
 COPY --from=builder /app/apps/api/package.json ./backend/package.json
 
 # Copy environment files
-COPY --from=builder /app/apps/api/env.example ./backend/.env
+COPY --from=builder /app/env.example ./backend/.env
 
 # Set proper permissions
 RUN chown -R nextjs:nodejs /app
