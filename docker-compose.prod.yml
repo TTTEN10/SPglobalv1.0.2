@@ -19,6 +19,7 @@ services:
     volumes:
       - ./data:/app/backend/data
       - ./logs:/app/logs
+      - frontend_files:/app/frontend
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
@@ -38,6 +39,7 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
+      - frontend_files:/app/frontend
     depends_on:
       - spglobalv1-landing
     restart: unless-stopped
@@ -62,4 +64,6 @@ volumes:
   caddy_data:
     driver: local
   caddy_config:
+    driver: local
+  frontend_files:
     driver: local
