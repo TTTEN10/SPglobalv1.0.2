@@ -9,8 +9,13 @@
     }
 }
 
-# Main site configuration
-:80 {
+# Redirect IP access to safepsy.com domain
+51.159.179.75 {
+    redir https://safepsy.com{uri} permanent
+}
+
+# Main site configuration for safepsy.com
+safepsy.com {
     # Security headers
     header {
         X-Frame-Options "SAMEORIGIN"

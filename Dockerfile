@@ -12,18 +12,18 @@ RUN npm ci --only=production
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
-COPY package.json package-lock.json* ./
-RUN npm ci
 
 # Copy source code
 COPY . .
 
-# Build frontend
-WORKDIR /app/frontend
+# Install frontend dependencies and build
+WORKDIR /app/apps/web
+RUN npm ci
 RUN npm run build
 
-# Build backend
-WORKDIR /app/backend
+# Install backend dependencies and build
+WORKDIR /app/apps/api
+RUN npm ci
 RUN npm run build
 
 # Production image, copy all the files and run the app
@@ -35,14 +35,14 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Copy built applications
-COPY --from=builder /app/frontend/dist ./frontend/dist
-COPY --from=builder /app/backend/dist ./backend/dist
-COPY --from=builder /app/backend/node_modules ./backend/node_modules
-COPY --from=builder /app/backend/prisma ./backend/prisma
-COPY --from=builder /app/backend/package.json ./backend/package.json
+COPY --from=builder /app/apps/web/dist ./frontend/dist
+COPY --from=builder /app/apps/api/dist ./backend/dist
+COPY --from=builder /app/apps/api/node_modules ./backend/node_modules
+COPY --from=builder /app/apps/api/prisma ./backend/prisma
+COPY --from=builder /app/apps/api/package.json ./backend/package.json
 
 # Copy environment files
-COPY --from=builder /app/backend/env.example ./backend/.env
+COPY --from=builder /app/apps/api/env.example ./backend/.env
 
 # Set proper permissions
 RUN chown -R nextjs:nodejs /app
