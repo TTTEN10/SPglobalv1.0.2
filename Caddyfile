@@ -14,6 +14,11 @@
     redir https://safepsy.com{uri} permanent
 }
 
+# Redirect www.safepsy.com to safepsy.com
+www.safepsy.com {
+    redir https://safepsy.com{uri} permanent
+}
+
 # Main site configuration for safepsy.com
 safepsy.com {
     # Security headers

@@ -45,7 +45,7 @@ This folder contains all the deployment scripts for the SafePsy landing page.
 
 ## 🌐 Server Information
 
-- **Server IP**: 51.159.179.75
+- **Server IP**: 51.159.171.7
 - **Repository**: https://github.com/TTTEN10/SPlandingv1.git
 - **App Directory**: /opt/safepsy-landing
 - **Domain**: safepsy.com
@@ -53,23 +53,23 @@ This folder contains all the deployment scripts for the SafePsy landing page.
 ## 🔧 Post-Deployment
 
 After successful deployment, your SafePsy landing page will be available at:
-- **HTTP**: http://51.159.179.75
+- **HTTP**: http://51.159.171.7
 - **Domain**: https://safepsy.com (after DNS configuration)
 
 ## 📝 Useful Commands
 
 ```bash
 # View deployment logs
-ssh root@51.159.179.75 'cd /opt/safepsy-landing && docker-compose logs -f'
+ssh root@51.159.171.7 'cd /opt/safepsy-landing && docker-compose logs -f'
 
 # Restart services
-ssh root@51.159.179.75 'cd /opt/safepsy-landing && docker-compose restart'
+ssh root@51.159.171.7 'cd /opt/safepsy-landing && docker-compose restart'
 
 # Stop services
-ssh root@51.159.179.75 'cd /opt/safepsy-landing && docker-compose down'
+ssh root@51.159.171.7 'cd /opt/safepsy-landing && docker-compose down'
 
 # Update deployment
-ssh root@51.159.179.75 'cd /opt/safepsy-landing && git pull && docker-compose up --build -d'
+ssh root@51.159.171.7 'cd /opt/safepsy-landing && git pull && docker-compose up --build -d'
 ```
 
 ## 🔒 Security Features
@@ -85,5 +85,5 @@ ssh root@51.159.179.75 'cd /opt/safepsy-landing && git pull && docker-compose up
 
 If you encounter any issues during deployment, check the logs first:
 ```bash
-ssh root@51.159.179.75 'cd /opt/safepsy-landing && docker-compose logs'
+ssh root@51.159.171.7 'cd /opt/safepsy-landing && docker-compose logs'
 ```
