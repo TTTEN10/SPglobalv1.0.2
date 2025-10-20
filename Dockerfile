@@ -42,7 +42,7 @@ COPY --from=builder /app/apps/api/package.json ./backend/package.json
 
 # Install production dependencies
 WORKDIR /app/backend
-RUN npm ci --only=production
+RUN npm install --only=production
 
 # Copy environment files
 COPY --from=builder /app/env.example ./backend/.env
