@@ -38,7 +38,7 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/apps/web/dist ./frontend/dist
 COPY --from=builder /app/apps/api/dist ./backend/dist
 COPY --from=builder /app/apps/api/node_modules ./backend/node_modules
-COPY --from=builder /app/apps/api/prisma ./backend/prisma
+COPY --from=builder /app/prisma ./backend/prisma
 COPY --from=builder /app/apps/api/package.json ./backend/package.json
 
 # Copy environment files
