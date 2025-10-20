@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Cookie, Settings, Shield, Eye, CheckCircle, AlertTriangle } from 'lucide-react'
+import { Cookie, Settings, Shield, Eye, CheckCircle } from 'lucide-react'
 import Header from './Header'
 import Footer from './Footer'
 
