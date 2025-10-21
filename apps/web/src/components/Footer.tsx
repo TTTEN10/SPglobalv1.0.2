@@ -17,9 +17,9 @@ const Footer: React.FC = () => {
               href="https://www.safepsy.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="h-16 hover:drop-shadow-lg transition-all duration-200"
+              className="h-12 hover:drop-shadow-lg transition-all duration-200"
             >
-              <img src="/LogoTransparent1.png" alt="SafePsy Logo" className="h-16" />
+              <img src="/LogoTransparent1.png" alt="SafePsy Logo" className="h-12" />
             </a>
             <p className="text-text-primary font-titillium font-regular text-[1.1em]">
               Safe Online-Therapy

@@ -18,8 +18,8 @@ const Header: React.FC<HeaderProps> = ({
     <header className="max-w-6xl mx-auto w-full px-6 py-2">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3 text-heading text-lg">
-          <a href="https://www.safepsy.com" target="_blank" rel="noopener noreferrer" className="h-14 transition-all duration-200">
-            <img src="/LogoTransparent1.png" alt="SafePsy Logo" className="h-14 hover:drop-shadow-lg" />
+          <a href="https://www.safepsy.com" target="_blank" rel="noopener noreferrer" className="h-12 transition-all duration-200">
+            <img src="/LogoTransparent1.png" alt="SafePsy Logo" className="h-12 hover:drop-shadow-lg" />
           </a>
         </div>
         

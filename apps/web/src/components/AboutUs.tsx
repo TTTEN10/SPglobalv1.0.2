@@ -31,10 +31,10 @@ const AboutUs: React.FC = () => {
                   Our Mission
                 </span>
               </h2>
-              <p className="text-xl text-body leading-relaxed text-center max-w-4xl mx-auto whitespace-nowrap">
+              <p className="text-xl text-body leading-relaxed text-center max-w-4xl mx-auto">
                 Safepsy is building a global ecosystem of safe mental health care compliant with APA and HIPAA standards.
               </p>
-              <p className="text-xl text-body leading-relaxed text-center max-w-4xl mx-auto whitespace-nowrap">
+              <p className="text-xl text-body leading-relaxed text-center max-w-4xl mx-auto">
                 We aim to make psychotherapy accessible to everyone, everywhere, without compromising on privacy or quality.
               </p>
             </div>
