@@ -127,7 +127,7 @@ const ContactUs: React.FC = () => {
               
               {/* Status Messages */}
               {status === 'success' && (
-                <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-xl">
+                <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 dark:bg-green-900/20 dark:border-green-500/50 dark:text-green-300 rounded-xl">
                   <p className="font-medium">{message}</p>
                 </div>
               )}
