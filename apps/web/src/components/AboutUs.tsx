@@ -26,16 +26,13 @@ const AboutUs: React.FC = () => {
 
             {/* Mission Section */}
             <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-12 lg:p-16 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20 mb-16">
-              <h2 className="text-3xl lg:text-4xl text-heading mb-8 text-center">
+              <h2 className="text-3xl lg:text-4xl text-heading mb-12 text-center">
                 <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
                   Our Mission
                 </span>
               </h2>
-              <p className="text-xl text-body leading-relaxed text-center max-w-4xl mx-auto">
-                Safepsy is building a global ecosystem of safe mental health care compliant with APA and HIPAA standards.
-              </p>
-              <p className="text-xl text-body leading-relaxed text-center max-w-4xl mx-auto">
-                We aim to make psychotherapy accessible to everyone, everywhere, without compromising on privacy or quality.
+              <p className="text-lg text-body leading-relaxed text-center max-w-4xl mx-auto mb-12">
+                SafePsy is building a global ecosystem of safe mental health care compliant with APA and HIPAA standards. We aim to make psychotherapy accessible to everyone, everywhere, without compromising on privacy or quality.
               </p>
             </div>
 
