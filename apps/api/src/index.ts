@@ -15,7 +15,7 @@ app.use("/api/subscribe", subscribe);
 app.use("/api/contact", contact);
 
 // serve built web app
-const dist = path.join(__dirname, "../../web/dist");
+const dist = path.join(__dirname, "../../frontend/dist");
 app.use(express.static(dist));
 app.get("*", (_req, res) => res.sendFile(path.join(dist, "index.html")));
 
