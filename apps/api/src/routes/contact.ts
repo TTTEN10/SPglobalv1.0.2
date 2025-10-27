@@ -14,18 +14,30 @@ router.post("/", async (req, res) => {
   const subject = req.body?.subject?.toString().trim() || "";
   const message = req.body?.message?.toString().trim() || "";
 
-  // Validate required fields
+  // Validate required fields with length limits
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
     return res.status(400).json({ success: false, message: "Please provide a valid email address" });
+
+  if (email.length > 255)
+    return res.status(400).json({ success: false, message: "Email address is too long" });
 
   if (!fullName || fullName.length < 2)
     return res.status(400).json({ success: false, message: "Full name must be at least 2 characters" });
 
+  if (fullName.length > 100)
+    return res.status(400).json({ success: false, message: "Full name must not exceed 100 characters" });
+
   if (!subject || subject.length < 5)
     return res.status(400).json({ success: false, message: "Subject must be at least 5 characters" });
 
+  if (subject.length > 200)
+    return res.status(400).json({ success: false, message: "Subject must not exceed 200 characters" });
+
   if (!message || message.length < 10)
     return res.status(400).json({ success: false, message: "Message must be at least 10 characters" });
+
+  if (message.length > 2000)
+    return res.status(400).json({ success: false, message: "Message must not exceed 2000 characters" });
 
   const ip = (req.headers["x-forwarded-for"] as string)?.split(",")[0] || req.socket.remoteAddress || "";
 

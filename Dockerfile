@@ -30,8 +30,8 @@ RUN npm run build
 FROM base AS runner
 WORKDIR /app
 
-# Install OpenSSL for Prisma
-RUN apk add --no-cache openssl openssl-dev
+# Install OpenSSL for Prisma and PostgreSQL client
+RUN apk add --no-cache openssl openssl-dev postgresql-client
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs

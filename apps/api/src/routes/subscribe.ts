@@ -13,11 +13,24 @@ router.post("/", async (req, res) => {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
     return res.status(400).json({ success: false, message: "Invalid email" });
 
-  // Optional fields from JoinOurWaitlist form
+  if (email.length > 255)
+    return res.status(400).json({ success: false, message: "Email address is too long" });
+
+  // Optional fields from JoinOurWaitlist form with validation
   const fullName = req.body?.fullName?.toString().trim() || null;
   const role = req.body?.role?.toString().trim() || null;
   const consentGiven = req.body?.consentGiven === true || false;
   const consentTimestamp = consentGiven ? new Date() : null;
+
+  // Validate optional field lengths if provided
+  if (fullName && fullName.length > 100)
+    return res.status(400).json({ success: false, message: "Full name must not exceed 100 characters" });
+
+  if (role && !['client', 'therapist', 'partner'].includes(role))
+    return res.status(400).json({ success: false, message: "Invalid role. Must be one of: client, therapist, partner" });
+
+  if (role && role.length > 50)
+    return res.status(400).json({ success: false, message: "Role must not exceed 50 characters" });
 
   const ip = (req.headers["x-forwarded-for"] as string)?.split(",")[0] || req.socket.remoteAddress || "";
 
