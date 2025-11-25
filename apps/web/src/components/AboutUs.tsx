@@ -15,54 +15,54 @@ const AboutUs: React.FC = () => {
         <section className="section-padding py-8 lg:py-12">
           <div className="container-max">
             {/* Hero Section */}
-            <div className="text-center mb-16">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl text-heading leading-tight mb-6">
-                <span className="text-[1.08em]">About</span>{' '}
-                <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent text-[1.2em] font-bold">
+            <div className="text-center mb-12 sm:mb-16 px-4 fade-in">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-heading leading-tight mb-4 sm:mb-6">
+                <span className="text-[1.08em] stagger-item">About</span>{' '}
+                <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent text-[1.2em] font-bold stagger-item">
                   SafePsy
                 </span>
               </h1>
             </div>
 
             {/* Mission Section */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-12 lg:p-16 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20 mb-16">
-              <h2 className="text-3xl lg:text-4xl text-heading mb-12 text-center">
+            <div className="bg-white/70 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 xl:p-16 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20 mb-12 sm:mb-16 fade-in card-hover">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-heading mb-8 sm:mb-12 text-center px-2">
                 <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
                   Our Mission
                 </span>
               </h2>
-              <p className="text-lg text-body leading-relaxed text-center max-w-4xl mx-auto mb-12">
+              <p className="text-base sm:text-lg text-body leading-relaxed text-center max-w-4xl mx-auto mb-8 sm:mb-12 px-4">
                 SafePsy is building a global ecosystem of safe mental health care compliant with APA and HIPAA standards. We aim to make psychotherapy accessible to everyone, everywhere, without compromising on privacy or quality.
               </p>
             </div>
 
             {/* Values Grid */}
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
-              <div className="space-y-4 text-center">
-                <div className="w-16 h-16 mx-auto bg-primary-100 rounded-full flex items-center justify-center border border-primary-200 dark:bg-primary-900/30 dark:border-primary-700">
-                  <Shield className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+              <div className="space-y-4 text-center stagger-item group">
+                <div className="w-16 h-16 mx-auto bg-primary-100 rounded-full flex items-center justify-center border border-primary-200 dark:bg-primary-900/30 dark:border-primary-700 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                  <Shield className="w-8 h-8 text-primary-600 dark:text-primary-400 icon-hover" />
                 </div>
-                <h3 className="text-xl text-heading">Secure</h3>
+                <h3 className="text-xl text-heading transition-colors duration-200 group-hover:text-primary-600">Secure</h3>
                 <p className="text-body">
                   Security is the foundation of SafePsy's ecosystem: Every session, transaction, and data exchange is encrypted and verified. Users maintain full control of their personal information, no third party can access private data.
                 </p>
               </div>
               
-              <div className="space-y-4 text-center">
-                <div className="w-16 h-16 mx-auto bg-secondary-100 rounded-full flex items-center justify-center border border-secondary-200 dark:bg-secondary-900/30 dark:border-secondary-700">
-                  <Heart className="w-8 h-8 text-secondary-600 dark:text-secondary-400" />
+              <div className="space-y-4 text-center stagger-item group">
+                <div className="w-16 h-16 mx-auto bg-secondary-100 rounded-full flex items-center justify-center border border-secondary-200 dark:bg-secondary-900/30 dark:border-secondary-700 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                  <Heart className="w-8 h-8 text-secondary-600 dark:text-secondary-400 icon-hover" />
                 </div>
-                <h3 className="text-xl text-heading">Ethical</h3>
+                <h3 className="text-xl text-heading transition-colors duration-200 group-hover:text-secondary-600">Ethical</h3>
                 <p className="text-body">
                   In adequacy with APA guidelines and psychologists deontology, we uphold the highest standards of professional ethics in mental health online services.
                 </p>
               </div>
               
-              <div className="space-y-4 text-center">
-                <div className="w-16 h-16 mx-auto bg-accent-100 rounded-full flex items-center justify-center border border-accent-200 dark:bg-accent-900/30 dark:border-accent-700">
-                  <Users className="w-8 h-8 text-accent-600 dark:text-accent-400" />
+              <div className="space-y-4 text-center stagger-item group">
+                <div className="w-16 h-16 mx-auto bg-accent-100 rounded-full flex items-center justify-center border border-accent-200 dark:bg-accent-900/30 dark:border-accent-700 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                  <Users className="w-8 h-8 text-accent-600 dark:text-accent-400 icon-hover" />
                 </div>
-                <h3 className="text-xl text-heading">Human-centered</h3>
+                <h3 className="text-xl text-heading transition-colors duration-200 group-hover:text-accent-600">Human-centered</h3>
                 <p className="text-body">
                   At SafePsy, technology serves people, not the other way around. Human dignity and care are at the heart of everything we build.
                 </p>
@@ -70,42 +70,42 @@ const AboutUs: React.FC = () => {
             </div>
 
             {/* Technology Section */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-12 lg:p-16 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20 mb-16">
-              <h2 className="text-3xl lg:text-4xl text-heading mb-12 text-center">
+            <div className="bg-white/70 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 xl:p-16 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20 mb-12 sm:mb-16 fade-in card-hover">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-heading mb-8 sm:mb-12 text-center px-2">
                 <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
                   Our Technology
                 </span>
               </h2>
-              <p className="text-lg text-body leading-relaxed text-center max-w-4xl mx-auto mb-12">
+              <p className="text-base sm:text-lg text-body leading-relaxed text-center max-w-4xl mx-auto mb-8 sm:mb-12 px-4">
                 SafePsy integrates artificial intelligence, blockchain, and secure digital identity to transform the way therapy and mental health support are delivered worldwide. Users control their own data through decentralized identity, verified directly on the blockchain, ensuring privacy and compliance at every step. An AI-powered therapy assistant provides immediate support, helping users prepare for sessions, reflect between appointments, and access guidance in moments of need.
               </p>
               
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="space-y-4 text-center">
-                  <div className="w-16 h-16 mx-auto bg-primary-100 rounded-full flex items-center justify-center border border-primary-200 dark:bg-primary-900/30 dark:border-primary-700">
-                    <Brain className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div className="space-y-4 text-center stagger-item group">
+                  <div className="w-16 h-16 mx-auto bg-primary-100 rounded-full flex items-center justify-center border border-primary-200 dark:bg-primary-900/30 dark:border-primary-700 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                    <Brain className="w-8 h-8 text-primary-600 dark:text-primary-400 icon-hover" />
                   </div>
-                  <h3 className="text-xl text-heading">AI-Powered</h3>
+                  <h3 className="text-xl text-heading transition-colors duration-200 group-hover:text-primary-600">AI-Powered</h3>
                   <p className="text-body">
                     Our AI assistant don't use your data for training, it evolves through psychology-informed training. It helps users prepare, reflect, and complement human psychologists.
                   </p>
                 </div>
                 
-                <div className="space-y-4 text-center">
-                  <div className="w-16 h-16 mx-auto bg-secondary-100 rounded-full flex items-center justify-center border border-secondary-200 dark:bg-secondary-900/30 dark:border-secondary-700">
-                    <Lock className="w-8 h-8 text-secondary-600 dark:text-secondary-400" />
+                <div className="space-y-4 text-center stagger-item group">
+                  <div className="w-16 h-16 mx-auto bg-secondary-100 rounded-full flex items-center justify-center border border-secondary-200 dark:bg-secondary-900/30 dark:border-secondary-700 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                    <Lock className="w-8 h-8 text-secondary-600 dark:text-secondary-400 icon-hover" />
                   </div>
-                  <h3 className="text-xl text-heading">Blockchain Security</h3>
+                  <h3 className="text-xl text-heading transition-colors duration-200 group-hover:text-secondary-600">Blockchain Security</h3>
                   <p className="text-body">
                     The backbone of our security: it guarantees transparency and trust with Decentralized identity and ensures users own and control their data.
                   </p>
                 </div>
                 
-                <div className="space-y-4 text-center">
-                  <div className="w-16 h-16 mx-auto bg-accent-100 rounded-full flex items-center justify-center border border-accent-200 dark:bg-accent-900/30 dark:border-accent-700">
-                    <Globe className="w-8 h-8 text-accent-600 dark:text-accent-400" />
+                <div className="space-y-4 text-center stagger-item group">
+                  <div className="w-16 h-16 mx-auto bg-accent-100 rounded-full flex items-center justify-center border border-accent-200 dark:bg-accent-900/30 dark:border-accent-700 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                    <Globe className="w-8 h-8 text-accent-600 dark:text-accent-400 icon-hover" />
                   </div>
-                  <h3 className="text-xl text-heading">Global Access</h3>
+                  <h3 className="text-xl text-heading transition-colors duration-200 group-hover:text-accent-600">Global Access</h3>
                   <p className="text-body">
                     Both psychologists and patients can use the platform from anywhere in the world with our accessible pricing.
                   </p>
@@ -113,74 +113,18 @@ const AboutUs: React.FC = () => {
               </div>
             </div>
 
-            {/* Team Section */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-12 lg:p-16 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20 mb-16">
-              <h2 className="text-3xl lg:text-4xl text-heading mb-8 text-center">
-                <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-                  Our Team
-                </span>
-              </h2>
-              <p className="text-lg text-body leading-relaxed text-center max-w-4xl mx-auto mb-12">
-                Safepsy's team gather professionals with a shared purpose: to redefine mental health care for the digital era in a safe and adequate environment.
-              </p>
-              
-              {/* Team Members */}
-              <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                {/* Co-Founder 1 */}
-                <div className="text-center space-y-4">
-                  <div className="w-48 h-48 mx-auto rounded-2xl overflow-hidden">
-                    <img 
-                      src="/ManAvatar.png" 
-                      alt="Co-Founder, CEO & CTO" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-heading">
-                    Thibaut TENENBAUM
-                  </h3>
-                  <p className="text-body">
-                    Ergonomist & Work Psychologist
-                  </p>
-                  <p className="text-body italic">
-                    Specialized in work systems, blockchain & AI.
-                  </p>
-                </div>
-                
-                {/* Co-Founder 2 */}
-                <div className="text-center space-y-4">
-                  <div className="w-48 h-48 mx-auto rounded-2xl overflow-hidden">
-                    <img 
-                      src="/WomanAvatar.png" 
-                      alt="Co-Founder, CMO, CPRO" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-heading">
-                    Polina TENENBAUM
-                  </h3>
-                  <p className="text-body">
-                    Work Psychologist & Ergonomist
-                  </p>
-                  <p className="text-body italic">
-                    Specialized in psychometric assessments & counsel.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-
             {/* Call to Action */}
-            <div className="text-center">
-              <h2 className="text-3xl lg:text-4xl text-heading mb-6">
+            <div className="text-center px-4 fade-in">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-heading mb-4 sm:mb-6 stagger-item">
                 Ready to Experience the Future of Mental Health Care?
               </h2>
-              <p className="text-lg text-body mb-8 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg text-body mb-6 sm:mb-8 max-w-2xl mx-auto stagger-item">
                 Join our waitlist to be among the first to experience safe online-therapy.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center stagger-item">
                 <button 
                   onClick={() => navigate('/')}
-                  className="btn-primary text-lg px-8 py-4"
+                  className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 min-h-[44px] w-full sm:w-auto hover:scale-105 active:scale-95 transition-transform duration-200"
                 >
                   Join Our Waitlist
                 </button>

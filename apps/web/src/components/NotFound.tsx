@@ -16,10 +16,10 @@ const NotFound: React.FC = () => {
         <section className="section-padding py-8 lg:py-12">
           <div className="container-max">
             {/* Error Content */}
-            <div className="text-center max-w-4xl mx-auto">
+            <div className="text-center max-w-4xl mx-auto px-4 fade-in">
               {/* Error Code */}
-              <div className="mb-8">
-                <h1 className="text-8xl sm:text-9xl lg:text-[12rem] font-bold text-heading leading-none">
+              <div className="mb-6 sm:mb-8 stagger-item">
+                <h1 className="text-6xl sm:text-8xl lg:text-9xl xl:text-[12rem] font-bold text-heading leading-none">
                   <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
                     404
                   </span>
@@ -27,11 +27,11 @@ const NotFound: React.FC = () => {
               </div>
 
               {/* Error Message */}
-              <div className="mb-12">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl text-heading mb-6">
+              <div className="mb-8 sm:mb-12">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-heading mb-4 sm:mb-6">
                   Page Not Found
                 </h2>
-                <p className="text-xl text-body leading-relaxed max-w-2xl mx-auto">
+                <p className="text-base sm:text-lg lg:text-xl text-body leading-relaxed max-w-2xl mx-auto">
                   The page you're looking for doesn't exist or has been moved. 
                   Let's get you back on track to finding the mental health support you need.
                 </p>
@@ -39,54 +39,54 @@ const NotFound: React.FC = () => {
 
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 stagger-item">
                 <button 
                   onClick={() => navigate('/')}
-                  className="btn-primary text-lg px-8 py-4 flex items-center justify-center gap-2"
+                  className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 flex items-center justify-center gap-2 min-h-[44px] w-full sm:w-auto hover:scale-105 active:scale-95 transition-transform duration-200 group"
                 >
-                  <Home className="w-5 h-5" />
+                  <Home className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                   Go Home
                 </button>
                 <button 
                   onClick={() => navigate(-1)}
-                  className="btn-secondary text-lg px-8 py-4 flex items-center justify-center gap-2"
+                  className="btn-secondary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 flex items-center justify-center gap-2 min-h-[44px] w-full sm:w-auto hover:scale-105 active:scale-95 transition-transform duration-200 group"
                 >
-                  <ArrowLeft className="w-5 h-5" />
+                  <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
                   Go Back
                 </button>
               </div>
 
               {/* Helpful Links */}
-              <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20">
-                <h3 className="text-2xl text-heading mb-6">
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20 fade-in card-hover">
+                <h3 className="text-xl sm:text-2xl text-heading mb-4 sm:mb-6">
                   <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
                     Popular Pages
                   </span>
                 </h3>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                   <button 
                     onClick={() => navigate('/')}
-                    className="text-body hover:text-primary-600 transition-colors p-3 rounded-lg hover:bg-white/50"
+                    className="text-sm sm:text-base text-body hover:text-primary-600 transition-all duration-300 p-3 rounded-lg hover:bg-white/50 min-h-[44px] hover:scale-105 active:scale-95"
                   >
                     Home
                   </button>
                   <button 
                     onClick={() => navigate('/about-us')}
-                    className="text-body hover:text-primary-600 transition-colors p-3 rounded-lg hover:bg-white/50"
+                    className="text-sm sm:text-base text-body hover:text-primary-600 transition-all duration-300 p-3 rounded-lg hover:bg-white/50 min-h-[44px] hover:scale-105 active:scale-95"
                   >
                     About Us
                   </button>
                   <button 
                     onClick={() => navigate('/contact-us')}
-                    className="text-body hover:text-primary-600 transition-colors p-3 rounded-lg hover:bg-white/50"
+                    className="text-sm sm:text-base text-body hover:text-primary-600 transition-all duration-300 p-3 rounded-lg hover:bg-white/50 min-h-[44px] hover:scale-105 active:scale-95"
                   >
                     Contact
                   </button>
                   <button 
-                    onClick={() => navigate('/join-our-waitlist')}
-                    className="text-body hover:text-primary-600 transition-colors p-3 rounded-lg hover:bg-white/50"
+                    onClick={() => navigate('/')}
+                    className="text-sm sm:text-base text-body hover:text-primary-600 transition-all duration-300 p-3 rounded-lg hover:bg-white/50 min-h-[44px] hover:scale-105 active:scale-95"
                   >
-                    Join Waitlist
+                    Go to Home
                   </button>
                 </div>
               </div>

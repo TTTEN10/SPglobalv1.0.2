@@ -6,7 +6,6 @@ import Footer from "./components/Footer";
 import AboutUs from "./components/AboutUs";
 import SecurityAndPrivacyPolicy from "./components/SecurityAndPrivacyPolicy";
 import ContactUs from "./components/ContactUs";
-import JoinOurWaitlist from "./components/JoinOurWaitlist";
 import NotFound from "./components/NotFound";
 import ServerError from "./components/ServerError";
 import Maintenance from "./components/Maintenance";
@@ -76,11 +75,6 @@ export default function App() {
           <Route path="/contact-us" element={
             <RouteWithSEO>
               <ContactUs />
-            </RouteWithSEO>
-          } />
-          <Route path="/join-our-waitlist" element={
-            <RouteWithSEO>
-              <JoinOurWaitlist />
             </RouteWithSEO>
           } />
           <Route path="/maintenance" element={

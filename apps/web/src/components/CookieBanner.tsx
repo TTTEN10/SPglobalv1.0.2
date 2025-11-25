@@ -7,7 +7,13 @@ interface CookieBannerProps {
 }
 
 const CookieBanner: React.FC<CookieBannerProps> = ({ onConsentChange }) => {
-  const [isVisible, setIsVisible] = useState(false)
+  // Initialize visibility by checking localStorage directly to avoid flash
+  const [isVisible, setIsVisible] = useState(() => {
+    // Check localStorage synchronously on initial render
+    const savedConsent = localStorage.getItem('cookieConsent')
+    return !savedConsent // Only show if no consent exists
+  })
+  
   const [showDetails, setShowDetails] = useState(false)
   const [preferences, setPreferences] = useState<CookiePreferences>({
     essential: true, // Always true - essential cookies cannot be disabled
@@ -22,6 +28,8 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onConsentChange }) => {
     if (!consentData.hasConsented) {
       setIsVisible(true)
     } else {
+      // User has already consented - hide banner and update preferences
+      setIsVisible(false)
       setPreferences(consentData.preferences)
     }
   }, [consentData])
@@ -73,49 +81,49 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onConsentChange }) => {
   return (
     <>
       {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40" />
+      <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 fade-in" />
       
       {/* Cookie Banner */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 p-4">
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-4 fade-in">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white/95 backdrop-blur-sm border border-neutral-200 dark:bg-black/95 dark:border-white/20 rounded-2xl shadow-2xl p-6 lg:p-8">
+          <div className="bg-white/95 backdrop-blur-sm border border-neutral-200 dark:bg-black/95 dark:border-white/20 rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 card-hover">
             {!showDetails ? (
               // Simple banner view
               <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center border border-primary-200 dark:bg-primary-900/30 dark:border-primary-700 flex-shrink-0">
-                    <Cookie className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center border border-primary-200 dark:bg-primary-900/30 dark:border-primary-700 flex-shrink-0 transition-transform duration-300 hover:scale-110 hover:rotate-12">
+                    <Cookie className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 dark:text-primary-400" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-heading mb-2">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg sm:text-xl font-semibold text-heading mb-2">
                       We respect your privacy
                     </h3>
-                    <p className="text-body leading-relaxed">
+                    <p className="text-sm sm:text-base text-body leading-relaxed">
                       We use essential cookies to make our site work. We'd also like to set optional 
                       cookies to improve your experience and help us understand how you use our platform.
                     </p>
                   </div>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-3 sm:pt-2">
                   <button
                     onClick={handleAcceptEssential}
-                    className="flex-1 px-6 py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-300 rounded-xl font-medium transition-colors duration-200"
+                    className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-300 rounded-xl font-medium transition-all duration-300 min-h-[44px] text-sm sm:text-base hover:scale-105 active:scale-95"
                   >
                     Essential only
                   </button>
                   <button
                     onClick={() => setShowDetails(true)}
-                    className="flex-1 px-6 py-3 bg-white border border-neutral-300 hover:bg-neutral-50 text-neutral-700 dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:text-gray-300 rounded-xl font-medium transition-colors duration-200"
+                    className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border border-neutral-300 hover:bg-neutral-50 text-neutral-700 dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:text-gray-300 rounded-xl font-medium transition-all duration-300 min-h-[44px] text-sm sm:text-base hover:scale-105 active:scale-95 group"
                   >
                     <div className="flex items-center justify-center gap-2">
-                      <Settings className="w-4 h-4" />
-                      Customize
+                      <Settings className="w-4 h-4 transition-transform duration-300 group-hover:rotate-90" />
+                      <span>Customize</span>
                     </div>
                   </button>
                   <button
                     onClick={handleAcceptAll}
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                    className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary-500/25 min-h-[44px] text-sm sm:text-base hover:scale-105 active:scale-95"
                   >
                     Accept all
                   </button>
@@ -123,16 +131,17 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onConsentChange }) => {
               </div>
             ) : (
               // Detailed preferences view
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-2xl font-semibold text-heading">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-heading">
                     Cookie Preferences
                   </h3>
                   <button
                     onClick={() => setShowDetails(false)}
-                    className="p-2 hover:bg-neutral-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                    className="p-2 hover:bg-neutral-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center hover:scale-110 active:scale-95 group"
+                    aria-label="Close preferences"
                   >
-                    <X className="w-5 h-5 text-neutral-600 dark:text-gray-400" />
+                    <X className="w-5 h-5 text-neutral-600 dark:text-gray-400 transition-transform duration-300 group-hover:rotate-90" />
                   </button>
                 </div>
 
@@ -169,13 +178,13 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onConsentChange }) => {
                       </div>
                       <button
                         onClick={() => handlePreferenceChange('functional', !preferences.functional)}
-                        className={`w-12 h-6 rounded-full flex items-center transition-colors duration-200 ${
+                        className={`w-12 h-6 rounded-full flex items-center transition-all duration-300 hover:scale-110 ${
                           preferences.functional 
                             ? 'bg-primary-600 justify-end' 
                             : 'bg-neutral-300 dark:bg-gray-600 justify-start'
                         }`}
                       >
-                        <div className="w-4 h-4 bg-white rounded-full mx-1"></div>
+                        <div className="w-4 h-4 bg-white rounded-full mx-1 transition-transform duration-300"></div>
                       </button>
                     </div>
                   </div>
@@ -194,28 +203,28 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onConsentChange }) => {
                       </div>
                       <button
                         onClick={() => handlePreferenceChange('analytics', !preferences.analytics)}
-                        className={`w-12 h-6 rounded-full flex items-center transition-colors duration-200 ${
+                        className={`w-12 h-6 rounded-full flex items-center transition-all duration-300 hover:scale-110 ${
                           preferences.analytics 
                             ? 'bg-primary-600 justify-end' 
                             : 'bg-neutral-300 dark:bg-gray-600 justify-start'
                         }`}
                       >
-                        <div className="w-4 h-4 bg-white rounded-full mx-1"></div>
+                        <div className="w-4 h-4 bg-white rounded-full mx-1 transition-transform duration-300"></div>
                       </button>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-neutral-200 dark:border-gray-600">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-4 border-t border-neutral-200 dark:border-gray-600">
                   <button
                     onClick={handleAcceptEssential}
-                    className="flex-1 px-6 py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-300 rounded-xl font-medium transition-colors duration-200"
+                    className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-300 rounded-xl font-medium transition-all duration-300 min-h-[44px] text-sm sm:text-base hover:scale-105 active:scale-95"
                   >
                     Essential only
                   </button>
                   <button
                     onClick={handleSavePreferences}
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                    className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary-500/25 min-h-[44px] text-sm sm:text-base hover:scale-105 active:scale-95"
                   >
                     Save preferences
                   </button>

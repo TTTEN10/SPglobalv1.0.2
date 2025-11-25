@@ -55,29 +55,30 @@ const CookieManager: React.FC<CookieManagerProps> = ({ isOpen, onClose }) => {
       <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40" onClick={onClose} />
       
       {/* Modal */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="bg-white/95 backdrop-blur-sm border border-neutral-200 dark:bg-black/95 dark:border-white/20 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-          <div className="p-6 lg:p-8">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4">
+        <div className="bg-white/95 backdrop-blur-sm border border-neutral-200 dark:bg-black/95 dark:border-white/20 rounded-xl sm:rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="p-4 sm:p-6 lg:p-8">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center border border-primary-200 dark:bg-primary-900/30 dark:border-primary-700">
-                  <Cookie className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+            <div className="flex items-center justify-between mb-4 sm:mb-6 gap-2">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary-100 rounded-full flex items-center justify-center border border-primary-200 dark:bg-primary-900/30 dark:border-primary-700 flex-shrink-0">
+                  <Cookie className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600 dark:text-primary-400" />
                 </div>
-                <h2 className="text-2xl font-semibold text-heading">
+                <h2 className="text-xl sm:text-2xl font-semibold text-heading truncate">
                   Cookie Preferences
                 </h2>
               </div>
               <button
                 onClick={onClose}
-                className="p-2 hover:bg-neutral-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                className="p-2 hover:bg-neutral-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center flex-shrink-0"
+                aria-label="Close cookie preferences"
               >
                 <X className="w-5 h-5 text-neutral-600 dark:text-gray-400" />
               </button>
             </div>
 
             {/* Description */}
-            <p className="text-body mb-6">
+            <p className="text-sm sm:text-base text-body mb-4 sm:mb-6">
               Manage your cookie preferences below. You can enable or disable different types of cookies 
               to control your privacy and experience on our platform.
             </p>
@@ -184,22 +185,22 @@ const CookieManager: React.FC<CookieManagerProps> = ({ isOpen, onClose }) => {
             </div>
 
             {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <button
                 onClick={handleEssentialOnly}
-                className="flex-1 px-6 py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-300 rounded-xl font-medium transition-colors duration-200"
+                className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-300 rounded-xl font-medium transition-colors duration-200 min-h-[44px] text-sm sm:text-base"
               >
                 Essential only
               </button>
               <button
                 onClick={handleSave}
-                className="flex-1 px-6 py-3 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl min-h-[44px] text-sm sm:text-base"
               >
                 Save preferences
               </button>
               <button
                 onClick={handleAcceptAll}
-                className="flex-1 px-6 py-3 bg-gradient-to-r from-secondary-600 to-accent-600 hover:from-secondary-700 hover:to-accent-700 text-white rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-secondary-600 to-accent-600 hover:from-secondary-700 hover:to-accent-700 text-white rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl min-h-[44px] text-sm sm:text-base"
               >
                 Accept all
               </button>

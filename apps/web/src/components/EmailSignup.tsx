@@ -63,15 +63,15 @@ const EmailSignup: React.FC = () => {
   }
 
   return (
-    <section className="section-padding py-16 lg:py-20 bg-white/40 backdrop-blur-sm">
+    <section className="section-padding py-16 lg:py-20 bg-white/40 backdrop-blur-sm fade-in">
       <div className="container-max">
         <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-3xl lg:text-4xl text-heading">
+              <h2 className="text-3xl lg:text-4xl text-heading stagger-item">
                 Be the first to know
               </h2>
-              <p className="text-xl text-body max-w-2xl mx-auto">
+              <p className="text-xl text-body max-w-2xl mx-auto stagger-item">
                 Join our waitlist to get early access to SafePsy and be part of the 
                 privacy-first therapy revolution.
               </p>
@@ -83,15 +83,15 @@ const EmailSignup: React.FC = () => {
                   <label htmlFor="email" className="sr-only">
                     Email address
                   </label>
-                  <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <div className="relative group">
+                    <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 transition-colors duration-300 group-hover:text-primary-600" />
                     <input
                       id="email"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email address"
-                      className="input-field pl-12 pr-4"
+                      className="input-field pl-12 pr-4 hover:border-primary-400/50"
                       disabled={isLoading}
                       aria-describedby={status !== 'idle' ? 'status-message' : undefined}
                       aria-invalid={status === 'error'}
@@ -103,7 +103,7 @@ const EmailSignup: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full btn-primary flex items-center justify-center gap-2"
+                  className="w-full btn-primary flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-transform duration-200"
                 >
                   {isLoading ? (
                     <>
@@ -122,9 +122,9 @@ const EmailSignup: React.FC = () => {
                   id="status-message"
                   role="status"
                   aria-live="polite"
-                  className={`mt-4 p-4 rounded-lg flex items-center gap-3 ${
+                  className={`mt-4 p-4 rounded-lg flex items-center gap-3 fade-in ${
                     status === 'success'
-                      ? 'bg-primary-50 text-primary-800 border border-primary-200'
+                      ? 'bg-primary-50 text-primary-800 border border-primary-200 animate-pulse'
                       : 'bg-red-50 text-red-800 border border-red-200'
                   }`}
                 >

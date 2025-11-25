@@ -1,63 +1,217 @@
-import React from 'react'
-import { Shield, Heart, Users } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Shield, Heart, Users, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { useNavigate, Link } from 'react-router-dom'
+
+interface SignupResponse {
+  success: boolean
+  message: string
+}
 
 const Hero: React.FC = () => {
   const navigate = useNavigate()
+  const [formData, setFormData] = useState({
+    email: '',
+    consentGiven: false
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [message, setMessage] = useState('')
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+    }))
+  }
+
+  const validateForm = (): boolean => {
+    if (!formData.email.trim()) {
+      setStatus('error')
+      setMessage('Please enter your email address')
+      return false
+    }
+    if (!formData.consentGiven) {
+      setStatus('error')
+      setMessage('You must give consent to join our waitlist')
+      return false
+    }
+    return true
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!validateForm()) return
+
+    setIsLoading(true)
+    setStatus('idle')
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || '/api'}/subscribe`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email.trim().toLowerCase(),
+          consentGiven: formData.consentGiven
+        }),
+      })
+
+      const data: SignupResponse = await response.json()
+
+      if (response.ok && data.success) {
+        setStatus('success')
+        setMessage(data.message)
+        setFormData({
+          email: '',
+          consentGiven: false
+        })
+      } else {
+        setStatus('error')
+        setMessage(data.message || 'Something went wrong. Please try again.')
+      }
+    } catch (error) {
+      setStatus('error')
+      setMessage('Network error. Please check your connection and try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
-    <section className="section-padding py-8 lg:py-12">
+    <section className="section-padding py-8 lg:py-12 fade-in">
       <div className="container-max">
         {/* Main Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12">
-          {/* Left Column - Headline */}
-          <div className="space-y-8 order-1 lg:order-1">
+        <div className="mb-12">
+          {/* Headline */}
+          <div className="space-y-8 text-center">
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl text-heading leading-tight text-center font-normal">
-                <div>Transforming</div>
-                <div className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent text-[1.32em] font-bold">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl text-heading leading-tight font-normal fade-in">
+                <div className="stagger-item">Transforming</div>
+                <div className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent text-[1.32em] font-bold stagger-item">
                   Online-Therapy
                 </div>
-                <div>with Ethical AI, Secured by Blockchain</div>
+                <div className="stagger-item">with Ethical AI, Secured by Blockchain</div>
               </h1>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => navigate('/join-our-waitlist')}
-                className="btn-primary text-lg px-8 py-4"
-              >
-                Join Our Waitlist
-              </button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center stagger-item">
               <button 
                 onClick={() => navigate('/about-us')}
-                className="btn-secondary text-lg px-8 py-4"
+                className="btn-secondary text-lg px-8 py-4 hover:scale-105 active:scale-95 transition-transform duration-200"
               >
                 Learn More
               </button>
             </div>
           </div>
+        </div>
 
-          {/* Right Column - Hero Image */}
-          <div className="relative order-2 lg:order-2">
-            <div className="rounded-3xl overflow-hidden h-[280px] sm:h-[320px] md:h-[360px] lg:h-[450px] flex items-center justify-center">
-              <img 
-                src="/HeroTheme1.png" 
-                alt="SafePsy Platform Interface" 
-                className="w-[90%] h-[90%] object-contain rounded-3xl"
-              />
-            </div>
+        {/* Waitlist Form Section */}
+        <div className="mb-12 sm:mb-16 fade-in">
+          <div className="bg-white/70 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20 max-w-2xl mx-auto card-hover">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl text-heading mb-6 sm:mb-8 text-center px-2">
+              <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+                Get early access and exclusive updates.
+              </span>
+            </h2>
+            
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="space-y-2">
+                  <label htmlFor="email" className="block text-base sm:text-lg font-medium text-heading">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    disabled={isLoading}
+                    className="w-full px-4 py-3 text-base sm:text-lg border-2 border-neutral-300 rounded-xl focus:border-primary-500 focus:ring-2 focus:ring-primary-200 focus:outline-none transition-all duration-300 bg-white/80 backdrop-blur-sm disabled:opacity-50 min-h-[44px] hover:border-primary-400/50"
+                    placeholder="Enter your email address"
+                  />
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <input
+                      type="checkbox"
+                      id="consentGiven"
+                      name="consentGiven"
+                      checked={formData.consentGiven}
+                      onChange={handleInputChange}
+                      required
+                      disabled={isLoading}
+                      className="mt-1 w-5 h-5 text-primary-600 border-2 border-neutral-300 rounded focus:ring-primary-500 focus:ring-2 disabled:opacity-50"
+                    />
+                    <label htmlFor="consentGiven" className="text-xs sm:text-sm text-body leading-relaxed">
+                      I consent to SafePsy collecting and processing my personal data for the purpose of joining the waitlist and receiving product updates. I have read and agree to the{' '}
+                      <Link 
+                        to="/sap-policy" 
+                        className="text-primary-600 hover:text-primary-700 underline font-medium break-words"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Security and Privacy Policy
+                      </Link>
+                      . *
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Status Message */}
+              {status !== 'idle' && (
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className={`p-4 rounded-lg flex items-center gap-3 ${
+                    status === 'success'
+                      ? 'bg-primary-50 text-primary-800 border border-primary-200 dark:bg-primary-900/20 dark:text-primary-300 dark:border-primary-500/50'
+                      : 'bg-red-50 text-red-800 border border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-500/50'
+                  }`}
+                >
+                  {status === 'success' ? (
+                    <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                  ) : (
+                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                  )}
+                  <span className="text-sm font-medium">{message}</span>
+                </div>
+              )}
+              
+              <div className="text-center">
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-semibold text-base sm:text-lg px-8 sm:px-12 py-3 sm:py-4 rounded-xl hover:from-primary-700 hover:to-secondary-700 focus:outline-none focus:ring-4 focus:ring-primary-200 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary-500/25 transform hover:-translate-y-0.5 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 mx-auto min-h-[44px] w-full sm:w-auto"
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Joining...
+                    </>
+                  ) : (
+                    'Join Waitlist'
+                  )}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
 
         {/* Mission Statement Section */}
-        <div className="text-center py-20">
-          <div className="max-w-4xl mx-auto">
+        <div className="text-center py-12 sm:py-16 lg:py-20 fade-in">
+          <div className="max-w-4xl mx-auto px-4">
             <div className="text-body leading-relaxed space-y-3 italic">
-              <div className="text-3xl lg:text-4xl">
+              <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl">
                 "The future of mental health depends on technology
               </div>
-              <div className="text-3xl lg:text-4xl">
+              <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl">
                 that is both{' '}
                 <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent font-bold">
                   safe{' '}
@@ -73,40 +227,40 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Values Section */}
-        <div className="text-center py-16">
-          <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-12 lg:p-16 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20">
-            <h2 className="text-4xl lg:text-5xl text-heading mb-8">
+        <div className="text-center py-12 sm:py-16 fade-in">
+          <div className="bg-white/70 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 xl:p-16 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20 card-hover">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-heading mb-6 sm:mb-8 px-2">
               <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
                 Secure. Ethical. Human-centered.
               </span>
             </h2>
             
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
-              <div className="space-y-4">
-                <div className="w-16 h-16 mx-auto bg-primary-100 rounded-full flex items-center justify-center border border-primary-200 dark:bg-primary-900/30 dark:border-primary-700">
-                  <Shield className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mt-8 sm:mt-12">
+              <div className="space-y-4 stagger-item group">
+                <div className="w-16 h-16 mx-auto bg-primary-100 rounded-full flex items-center justify-center border border-primary-200 dark:bg-primary-900/30 dark:border-primary-700 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                  <Shield className="w-8 h-8 text-primary-600 dark:text-primary-400 icon-hover" />
                 </div>
-                <h3 className="text-xl text-heading">Secure</h3>
+                <h3 className="text-xl text-heading transition-colors duration-200 group-hover:text-primary-600">Secure</h3>
                 <p className="text-body">
                   End-to-end encryption and blockchain technology ensure your privacy and data security
                 </p>
               </div>
               
-              <div className="space-y-4">
-                <div className="w-16 h-16 mx-auto bg-secondary-100 rounded-full flex items-center justify-center border border-secondary-200 dark:bg-secondary-900/30 dark:border-secondary-700">
-                  <Heart className="w-8 h-8 text-secondary-600 dark:text-secondary-400" />
+              <div className="space-y-4 stagger-item group">
+                <div className="w-16 h-16 mx-auto bg-secondary-100 rounded-full flex items-center justify-center border border-secondary-200 dark:bg-secondary-900/30 dark:border-secondary-700 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                  <Heart className="w-8 h-8 text-secondary-600 dark:text-secondary-400 icon-hover" />
                 </div>
-                <h3 className="text-xl text-heading">Ethical</h3>
+                <h3 className="text-xl text-heading transition-colors duration-200 group-hover:text-secondary-600">Ethical</h3>
                 <p className="text-body">
                   Compliant with APA and HIPAA guidelines, made by psychologists to protect patients
                 </p>
               </div>
               
-              <div className="space-y-4">
-                <div className="w-16 h-16 mx-auto bg-accent-100 rounded-full flex items-center justify-center border border-accent-200 dark:bg-accent-900/30 dark:border-accent-700">
-                  <Users className="w-8 h-8 text-accent-600 dark:text-accent-400" />
+              <div className="space-y-4 stagger-item group">
+                <div className="w-16 h-16 mx-auto bg-accent-100 rounded-full flex items-center justify-center border border-accent-200 dark:bg-accent-900/30 dark:border-accent-700 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                  <Users className="w-8 h-8 text-accent-600 dark:text-accent-400 icon-hover" />
                 </div>
-                <h3 className="text-xl text-heading">Human-centered</h3>
+                <h3 className="text-xl text-heading transition-colors duration-200 group-hover:text-accent-600">Human-centered</h3>
                 <p className="text-body">
                   Enhanced interface and pricing to enable global mental health accessibility
                 </p>

@@ -13,32 +13,32 @@ const SecurityAndPrivacyPolicy: React.FC = () => {
         <section className="section-padding py-8 lg:py-12">
           <div className="container-max">
             {/* Hero Section */}
-            <div className="text-center mb-16">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl text-heading leading-tight mb-6">
+            <div className="text-center mb-12 sm:mb-16 px-4">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-heading leading-tight mb-4 sm:mb-6">
                 <span className="text-[1.08em]">Security and</span>{' '}
                 <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent text-[1.2em] font-bold">
                   Privacy Policy
                 </span>
               </h1>
-              <p className="text-xl text-body leading-relaxed max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg lg:text-xl text-body leading-relaxed max-w-3xl mx-auto">
                 Comprehensive data protection and security measures for your mental health journey
               </p>
             </div>
 
             {/* Security Overview */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-12 lg:p-16 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20 mb-16">
-              <h2 className="text-3xl lg:text-4xl text-heading mb-8 text-center">
+            <div className="bg-white/70 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 xl:p-16 shadow-lg border border-neutral-dark/20 dark:bg-black/30 dark:border-white/20 mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-heading mb-6 sm:mb-8 text-center px-2">
                 <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
                   Security Overview
                 </span>
               </h2>
-              <p className="text-lg text-body leading-relaxed text-center max-w-4xl mx-auto mb-12">
+              <p className="text-base sm:text-lg text-body leading-relaxed text-center max-w-4xl mx-auto mb-8 sm:mb-12 px-4">
                 SafePsy implements comprehensive security measures to protect user data, ensure privacy, 
                 and maintain system integrity. Our multi-layer security model provides enterprise-grade 
                 protection for your sensitive mental health information.
               </p>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 <div className="space-y-4 text-center">
                   <div className="w-16 h-16 mx-auto bg-primary-100 rounded-full flex items-center justify-center border border-primary-200 dark:bg-primary-900/30 dark:border-primary-700">
                     <Shield className="w-8 h-8 text-primary-600 dark:text-primary-400" />
@@ -525,43 +525,45 @@ const SecurityAndPrivacyPolicy: React.FC = () => {
                 </span>
               </h2>
               
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse border border-neutral-300 dark:border-gray-600">
-                  <thead>
-                    <tr className="bg-neutral-100 dark:bg-gray-800">
-                      <th className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-left text-heading">Data Type</th>
-                      <th className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-left text-heading">Purpose</th>
-                      <th className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-left text-heading">Retention</th>
-                      <th className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-left text-heading">Legal Basis</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Identity Data (DID)</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Identity verification and access control</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">User-controlled deletion</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Consent, Contract</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Health Data</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Therapy provision and progress tracking</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">7 years (regulatory)</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Consent, Vital Interests</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Communication Data</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Therapy conversations and sessions</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">30 days (configurable)</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Consent, Contract</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Technical Data</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Platform security and optimization</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">12 months</td>
-                      <td className="border border-neutral-300 dark:border-gray-600 px-4 py-3 text-body">Legitimate Interests</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="overflow-x-auto -mx-4 sm:mx-0">
+                <div className="inline-block min-w-full align-middle">
+                  <table className="w-full border-collapse border border-neutral-300 dark:border-gray-600 text-sm sm:text-base">
+                    <thead>
+                      <tr className="bg-neutral-100 dark:bg-gray-800">
+                        <th className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-left text-heading text-xs sm:text-sm">Data Type</th>
+                        <th className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-left text-heading text-xs sm:text-sm">Purpose</th>
+                        <th className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-left text-heading text-xs sm:text-sm">Retention</th>
+                        <th className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-left text-heading text-xs sm:text-sm">Legal Basis</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Identity Data (DID)</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Identity verification and access control</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">User-controlled deletion</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Consent, Contract</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Health Data</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Therapy provision and progress tracking</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">7 years (regulatory)</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Consent, Vital Interests</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Communication Data</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Therapy conversations and sessions</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">30 days (configurable)</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Consent, Contract</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Technical Data</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Platform security and optimization</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">12 months</td>
+                        <td className="border border-neutral-300 dark:border-gray-600 px-3 sm:px-4 py-2 sm:py-3 text-body text-xs sm:text-sm">Legitimate Interests</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
 

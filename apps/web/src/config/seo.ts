@@ -63,18 +63,4 @@ export const seoConfig: Record<string, SEOConfig> = {
     twitterCard: 'summary',
     canonical: `${baseUrl}/contact-us`,
   },
-  '/join-our-waitlist': {
-    title: 'Join Our Waitlist - SafePsy | Early Access',
-    description: 'Join SafePsy\'s waitlist for early access to our privacy-first mental health platform. Be among the first to experience secure, ethical online therapy.',
-    keywords: 'SafePsy waitlist, early access, mental health platform, privacy-first therapy, secure counseling, therapy waitlist',
-    ogTitle: 'Join SafePsy Waitlist - Early Access',
-    ogDescription: 'Join SafePsy\'s waitlist for early access to our privacy-first mental health platform.',
-    ogImage: defaultImage,
-    ogUrl: `${baseUrl}/join-our-waitlist`,
-    twitterTitle: 'Join SafePsy Waitlist - Early Access',
-    twitterDescription: 'Join SafePsy\'s waitlist for early access to our privacy-first mental health platform.',
-    twitterImage: defaultImage,
-    twitterCard: 'summary_large_image',
-    canonical: `${baseUrl}/join-our-waitlist`,
-  },
 };

@@ -5,7 +5,7 @@
   "private": true,
   "workspaces": ["apps/*"],
   "scripts": {
-    "dev:web": "vite --config apps/web/vite.config.ts",
+    "dev:web": "cd apps/web && vite",
     "dev:api": "cd apps/api && nodemon --config nodemon.json",
     "dev": "concurrently -k \"npm:dev:web\" \"npm:dev:api\"",
     "build:web": "tsc -b apps/web && vite build --config apps/web/vite.config.ts",
